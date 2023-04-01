@@ -1,0 +1,23 @@
+env:
+    CIRRUS_SHELL: bash
+
+task:
+  name: "Build TWRP"
+  timeout_in: 120m
+  container:
+      image: ghcr.io/sushrut1101/docker:arch
+      cpu: 6
+      memory: 16G
+  Build_script:
+      - python --version
+      - rm -rf /usr/bin/python
+      - ln -s /usr/bin/python2 /usr/bin/python
+      - python --version
+      - mkdir /root/shrp
+      - cd /root/shrp
+      - repo init -u https://github.com/SHRP/manifest.git -b v3_10.0 --depth=1
+      - repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags --depth=1
+      - export ALLOW_MISSING_DEPENDENCIES=true 
+      - bash -c "source build/envsetup.sh && lunch omni_whyred-eng && mka recoveryimage"
+      - curl --upload-file /root/shrp/out/target/product/whyred/*.zip https://free.keep.sh
+      - curl --upload-file /root/shrp/out/target/product/whyred/*.img https://free.keep.sh
