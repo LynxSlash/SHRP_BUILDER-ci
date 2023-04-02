@@ -15,8 +15,8 @@ task:
       - python --version
       - mkdir /root/shrp
       - cd /root/shrp
-      - repo init -u https://github.com/SHRP/manifest.git -b v3_9.0
-      - repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
+      - repo init -u git://github.com/PitchBlackRecoveryProject/manifest_pb.git -b android-8.1 --depth=1
+      - repo sync -c -j$(nproc --all)
       - export ALLOW_MISSING_DEPENDENCIES=true
       - bash -c "source build/envsetup.sh && lunch omni_whyred-eng && mka recoveryimage"
       - curl --upload-file /root/shrp/out/target/product/whyred/*.zip https://free.keep.sh
