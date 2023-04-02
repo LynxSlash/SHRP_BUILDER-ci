@@ -15,7 +15,7 @@ task:
       - python --version
       - mkdir /root/shrp
       - cd /root/shrp
-      - repo init -u https://github.com/SHRP/manifest.git -b v3_9.0 --depth=1
+      - repo init -u https://github.com/SHRP/manifest.git -b v3_9.0
       - repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
       - export ALLOW_MISSING_DEPENDENCIES=true
       - bash -c "source build/envsetup.sh && lunch omni_whyred-eng && mka recoveryimage"
