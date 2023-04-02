@@ -19,5 +19,5 @@ task:
       - repo sync -c -j$(nproc --all)
       - export ALLOW_MISSING_DEPENDENCIES=true
       - bash -c "source build/envsetup.sh && lunch omni_whyred-eng && mka recoveryimage"
-      - curl --upload-file /root/shrp/out/target/product/whyred/PBRP-whyred-4.0-20230402-1501-UNOFFICIAL.zip https://free.keep.sh
       - curl --upload-file /root/shrp/out/target/product/whyred/recovery.img https://free.keep.sh
+      - curl --upload-file /root/shrp/out/target/product/whyred/PBRP-whyred-4.0*.zip https://free.keep.sh
