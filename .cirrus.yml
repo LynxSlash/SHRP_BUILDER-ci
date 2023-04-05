@@ -6,7 +6,7 @@ task:
   timeout_in: 120m
   container:
       image: ghcr.io/sushrut1101/docker:arch
-      cpu: 6
+      cpu: 4
       memory: 8G
   Build_script:
       - python --version
@@ -16,13 +16,13 @@ task:
       - mkdir /root/shrp
       - cd /root/shrp
       - repo init -u https://github.com/PitchBlackRecoveryProject/manifest_pb.git -b android-9.0 --depth=1
-      - repo sync -c -j6
+      - repo sync -c -j4
       - rm -rf vendor/xiaomi/whyred
       - git clone https://github.com/Darkstar085/vendor_xiaomi_whyred -b pie vendor/xiaomi/whyred
       - export ALLOW_MISSING_DEPENDENCIES=true
       - bash -c "source build/envsetup.sh && lunch omni_whyred-eng"
       - rm -rf device/xiaomi/whyred/prebuilt/Image.gz-dtb
       - wget https://free.keep.sh/v3qwcKExnKSEGNad/Image.gz-dtb/download -O device/xiaomi/whyred/prebuilt/Image.gz-dtb
-      - bash -c "source build/envsetup.sh && lunch omni-whyred-eng && mka recoveryimage -j6"
+      - bash -c "source build/envsetup.sh && lunch omni-whyred-eng && mka recoveryimage -j4"
       - curl --upload-file /root/shrp/out/target/product/whyred/recovery.img https://free.keep.sh
       - curl --upload-file /root/shrp/out/target/product/whyred/PBRP-whyred-4.0*.zip https://free.keep.sh
