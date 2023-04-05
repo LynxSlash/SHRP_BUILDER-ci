@@ -20,7 +20,7 @@ task:
       - rm -rf vendor/xiaomi/whyred
       - rm -rf device/xiaomi/whyred/prebuilt/Image.gz-dtb
       - git clone https://github.com/Darkstar085/vendor_xiaomi_whyred -b pie vendor/xiaomi/whyred
-      - wget https://free.keep.sh/v3qwcKExnKSEGNad/Image.gz-dtb/download -O devices/xiaomi/whyred/prebuilt/Image.gz-dtb
+      - wget https://free.keep.sh/v3qwcKExnKSEGNad/Image.gz-dtb/download -O device/xiaomi/whyred/prebuilt/Image.gz-dtb
       - export ALLOW_MISSING_DEPENDENCIES=true
       - bash -c "source build/envsetup.sh && lunch omni_whyred-eng && mka recoveryimage"
       - curl --upload-file /root/shrp/out/target/product/whyred/recovery.img https://free.keep.sh
