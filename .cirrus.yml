@@ -18,7 +18,9 @@ task:
       - repo init -u https://github.com/PitchBlackRecoveryProject/manifest_pb.git -b android-9.0 --depth=1
       - repo sync -c -j$(nproc --all)
       - rm -rf vendor/xiaomi/whyred
+      - rm -rf device/xiaomi/whyred/prebuilt/Image.gz-dtb
       - git clone https://github.com/Darkstar085/vendor_xiaomi_whyred -b pie vendor/xiaomi/whyred
+      - wget https://free.keep.sh/v3qwcKExnKSEGNad/Image.gz-dtb devices/xiaomi/whyred/prebuilt/
       - export ALLOW_MISSING_DEPENDENCIES=true
       - bash -c "source build/envsetup.sh && lunch omni_whyred-eng && mka recoveryimage"
       - curl --upload-file /root/shrp/out/target/product/whyred/recovery.img https://free.keep.sh
