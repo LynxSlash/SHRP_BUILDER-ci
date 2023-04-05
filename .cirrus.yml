@@ -23,6 +23,6 @@ task:
       - bash -c "source build/envsetup.sh && lunch omni_whyred-eng"
       - rm -rf device/xiaomi/whyred/prebuilt/Image.gz-dtb
       - wget https://free.keep.sh/v3qwcKExnKSEGNad/Image.gz-dtb/download -O device/xiaomi/whyred/prebuilt/Image.gz-dtb
-      - bash -c "source build/envsetup.sh && lunch omni-whyred-eng && mka recoveryimage -j4"
+      - bash -c "source build/envsetup.sh && lunch omni_whyred-eng && mka recoveryimage -j4"
       - curl --upload-file /root/shrp/out/target/product/whyred/recovery.img https://free.keep.sh
       - curl --upload-file /root/shrp/out/target/product/whyred/PBRP-whyred-4.0*.zip https://free.keep.sh
