@@ -17,7 +17,7 @@ task:
       - cd /root/shrp
       - repo init -u https://github.com/PitchBlackRecoveryProject/manifest_pb.git -b android-9.0 --depth=1
       - repo sync -c -j4
-      - rm -rf device/xiaomi/whyred
+
       - git clone https://github.com/rezaadi0105/pbrp_device_xiaomi_whyred.git device/xiaomi/whyred --depth=1
       - export ALLOW_MISSING_DEPENDENCIES=true
       - bash -c "source build/envsetup.sh && lunch omni_whyred-eng && mka recoveryimage"
