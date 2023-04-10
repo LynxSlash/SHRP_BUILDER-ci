@@ -18,7 +18,7 @@ task:
       - repo sync -c -j4
       - git clone https://github.com/rezaadi0105/pbrp_device_xiaomi_whyred.git device/xiaomi/whyred --depth=1
       - rm -rf device/xiaomi/whyred/prebuilt/Image.gz-dtb
-      - curl -L https://free.keep.sh/nMCkuLsJkfl41J0j/Image.gz-dtb > device/xiaomi/whyred/prebuilt/Image.gz-dtb
+      - curl -L https://free.keep.sh/MrLT7BgPGuMs0SlJ/Image.gz-dtb > device/xiaomi/whyred/prebuilt/Image.gz-dtb
       - export ALLOW_MISSING_DEPENDENCIES=true
       - bash -c "source build/envsetup.sh && lunch omni_whyred-eng && mka recoveryimage -j4"
       - curl --upload-file /root/shrp/out/target/product/whyred/recovery.img https://free.keep.sh
