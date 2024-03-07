@@ -1,0 +1,25 @@
+env:
+    CIRRUS_SHELL: bash
+
+task:
+  name: "Build TWRP"
+  container:
+      image: ghcr.io/sushrut1101/docker:arch
+      cpu: 4
+      memory: 8G
+  Build_script:
+      - python --version
+      - rm -rf /usr/bin/python
+      - ln -s /usr/bin/python2 /usr/bin/python
+      - python --version
+      - mkdir /root/shrp
+      - cd /root/shrp
+      - repo init -u https://github.com/PitchBlackRecoveryProject/manifest_pb.git -b android-9.0 --depth=1
+      - repo sync -c -j4
+      - git clone https://github.com/rezaadi0105/pbrp_device_xiaomi_whyred.git device/xiaomi/whyred --depth=1
+      - rm -rf device/xiaomi/whyred/prebuilt/Image.gz-dtb
+      - curl -L https://free.keep.sh/MrLT7BgPGuMs0SlJ/Image.gz-dtb > device/xiaomi/whyred/prebuilt/Image.gz-dtb
+      - export ALLOW_MISSING_DEPENDENCIES=true
+      - bash -c "source build/envsetup.sh && lunch omni_whyred-eng && mka recoveryimage -j4"
+      - curl --upload-file /root/shrp/out/target/product/whyred/recovery.img https://free.keep.sh
+      - curl --upload-file /root/shrp/out/target/product/whyred/PBRP-whyred-4.0*.zip https://free.keep.sh
